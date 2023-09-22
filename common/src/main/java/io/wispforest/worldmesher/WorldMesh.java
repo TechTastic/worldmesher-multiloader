@@ -5,13 +5,11 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
 import com.mojang.math.Matrix4f;
 import io.wispforest.worldmesher.renderers.WorldMesherBlockModelRenderer;
-import io.wispforest.worldmesher.renderers.WorldMesherLiquidBlockRenderer;
 import net.minecraft.CrashReport;
 import net.minecraft.Util;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.entity.RenderLayerParent;
-import net.minecraft.client.renderer.entity.layers.RenderLayer;
+import net.minecraft.client.renderer.block.LiquidBlockRenderer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -168,7 +166,7 @@ public class WorldMesh {
         final var client = Minecraft.getInstance();
         final var blockRenderManager = client.getBlockRenderer();
         final var blockRenderer = new WorldMesherBlockModelRenderer();
-        final var fluidRenderer = new WorldMesherLiquidBlockRenderer();
+        final var fluidRenderer = PlatformUtils.createLiquidBlockRenderer();
         PoseStack matrices = matrixStackSupplier.get();
 
         // TODO: IndigoRenderer Fuckery
@@ -227,7 +225,7 @@ public class WorldMesh {
                 matrices.translate(renderPos.getX(), renderPos.getY(), renderPos.getZ());
 
                 fluidRenderer.setMatrix(matrices.last().pose());
-                fluidRenderer.tesselate(level, pos, getOrCreateBuffer(fluidLayer), state, fluidState);
+                ((LiquidBlockRenderer) fluidRenderer).tesselate(level, pos, getOrCreateBuffer(fluidLayer), state, fluidState);
 
                 matrices.popPose();
             }

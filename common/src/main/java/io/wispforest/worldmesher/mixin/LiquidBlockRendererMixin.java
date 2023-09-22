@@ -1,6 +1,6 @@
 package io.wispforest.worldmesher.mixin;
 
-import io.wispforest.worldmesher.renderers.WorldMesherLiquidBlockRenderer;
+import io.wispforest.worldmesher.renderers.IWorldMesherLiquidBlockRenderer;
 import net.minecraft.client.renderer.block.LiquidBlockRenderer;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -17,7 +17,7 @@ public class LiquidBlockRendererMixin {
     @SuppressWarnings("ConstantConditions")
     @Inject(method = "setupSprites", at = @At("RETURN"), cancellable = true)
     private void cancelFabricOnTwitter(CallbackInfo ci) {
-        if (!((Object) this instanceof WorldMesherLiquidBlockRenderer)) return;
+        if (!((Object) this instanceof IWorldMesherLiquidBlockRenderer)) return;
         ci.cancel();
     }
 

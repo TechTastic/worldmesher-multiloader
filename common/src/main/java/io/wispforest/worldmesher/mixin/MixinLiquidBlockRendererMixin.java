@@ -1,7 +1,7 @@
 package io.wispforest.worldmesher.mixin;
 
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import io.wispforest.worldmesher.renderers.WorldMesherLiquidBlockRenderer;
+import io.wispforest.worldmesher.renderers.IWorldMesherLiquidBlockRenderer;
 import net.minecraft.client.renderer.block.LiquidBlockRenderer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockAndTintGetter;
@@ -29,7 +29,7 @@ public class MixinLiquidBlockRendererMixin {
     @SuppressWarnings({"CancellableInjectionUsage", "ConstantConditions"})
     @Inject(method = "tesselate", at = @At("HEAD"), cancellable = true, remap = false)
     private void cancelFabricOnTwitter(BlockAndTintGetter blockAndTintGetter, BlockPos blockPos, VertexConsumer vertexConsumer, BlockState blockState, FluidState fluidState, CallbackInfoReturnable<Boolean> cir) {
-        if (!((Object) this instanceof WorldMesherLiquidBlockRenderer)) return;
+        if (!((Object) this instanceof IWorldMesherLiquidBlockRenderer)) return;
         fabric_customRendering.set(true);
         cir.cancel();
     }
