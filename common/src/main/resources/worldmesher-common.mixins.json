@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "package": "io.wispforest.worldmesher.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "minVersion": "0.8",
+  "client": [
+    "ModelBlockRendererInvoker",
+    "LiquidBlockRendererMixin",
+    "MixinLiquidBlockRendererMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

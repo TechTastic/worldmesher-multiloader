@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "id": "worldmesher",
+  "version": "${version}",
+  "name": "Worldmesher",
+  "description": "",
+  "authors": [
+    "glisco"
+  ],
+  "contact": {},
+  "license": "MIT License",
+  "icon": "assets/worldmesher/icon.png",
+  "environment": "*",
+  "mixins": [
+    "worldmesher.mixins.json",
+    "worldmesher-common.mixins.json"
+  ],
+  "depends": {
+    "fabric": "*",
+    "minecraft": ">=1.18.2",
+    "architectury": ">=4.11.91"
+  }
+}
